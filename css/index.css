@@ -1,0 +1,37 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.logo-div{
+    display: flex;
+    flex-direction: row;
+    flex-basis: 20%;
+    padding: 2%;
+}
+.logo-text{
+    display: flex;
+    flex-direction: column;
+    padding-left: 1%;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-weight: bold;
+    letter-spacing: 1;
+}
+.emp-text{
+    color: green;
+}
+.payroll-text{
+    color: grey;
+}
+.header > h1{
+    color: blue;
+    text-decoration: underline;
+    padding-left: 1%;
+    font-weight: lighter;
+}
