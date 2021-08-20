@@ -58,7 +58,7 @@ body{
 .elements-div{
     display: flex;
     flex-direction: row;
-    margin-top: 2%;
+    margin-bottom: 1%;
     padding: 1%;
     font-weight:500;
     font-size: 15px;
@@ -68,6 +68,8 @@ body{
 }
 .labels{
     flex-basis: 20%;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 .inputs{
     flex-basis: 80%;
@@ -75,11 +77,15 @@ body{
     flex-direction: row;
     align-items: center;
 }
-.inputs > img{
+.inputs > img,p{
     margin-left: 1%;
     margin-right: 5%;
 }
 .input-name{
     width: 100%;
+    height: 100%;
+}
+.input-salary{
+    width: 50%;
     height: 100%;
 }
