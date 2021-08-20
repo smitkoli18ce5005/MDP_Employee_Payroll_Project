@@ -24,7 +24,7 @@ body{
     letter-spacing: 1;
 }
 .emp-text{
-    color: #8aac1c;    ;
+    color: #8aac1c;
 }
 .payroll-text{
     color: #4a5865;
@@ -94,6 +94,7 @@ body{
 .input-salary{
     width: 50%;
     height: 100%;
+    cursor: pointer;
 }
 .input-date{
     width: 25%;
