@@ -58,6 +58,7 @@ body{
 .elements-div{
     display: flex;
     flex-direction: row;
+    margin-top: 2%;
     padding: 1%;
     font-weight:500;
     font-size: 15px;
@@ -70,6 +71,13 @@ body{
 }
 .inputs{
     flex-basis: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.inputs > img{
+    margin-left: 1%;
+    margin-right: 5%;
 }
 .input-name{
     width: 100%;
