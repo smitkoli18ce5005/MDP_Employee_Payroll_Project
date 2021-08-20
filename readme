@@ -8,3 +8,4 @@ text as ‘Employee Payroll Form’
 
 
 UC 1            - Use flex and CSS properties
+UC 2            - Ability to create a Form Header and the Input Text Element for Name
