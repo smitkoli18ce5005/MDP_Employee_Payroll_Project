@@ -11,3 +11,4 @@ UC 1            - Use flex and CSS properties
 UC 2            - Ability to create a Form Header and the Input Text Element for Name
 UC 3            - Ability to specify the Profile Pic in the Form
 UC 4            - Ability to specify the gender as radio button, department as checkbox and Salary as range indicator
+UC 5            - Ability to specify the start date with Day, Month and Year as Select Input Item

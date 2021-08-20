@@ -77,15 +77,20 @@ body{
     flex-direction: row;
     align-items: center;
 }
-.inputs > img,p{
+.inputs > img,p,select{
     margin-left: 1%;
     margin-right: 5%;
 }
 .input-name{
-    width: 100%;
+    margin-left: 1%;
+    width: 99%;
     height: 100%;
 }
 .input-salary{
     width: 50%;
+    height: 100%;
+}
+.input-date{
+    width: 20%;
     height: 100%;
 }
