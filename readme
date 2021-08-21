@@ -15,3 +15,4 @@ UC 5            - Ability to specify the start date with Day, Month and Year as 
 UC 6            - Ability to add Notes as well as cancel, reset and submit button so as to do some action on form entry
 UC 7            - Adding Media Queries and changing salary input as slider
 UC 8            - Ability to Set Event Listener on Salary Range to display appropriate value
+UC 11           - Ability to create an Employee Payroll System Home Page UI - Note that the Header is exactly same as the Add Employee Payroll form UI. So take it as is.
