@@ -2,7 +2,7 @@
     width: 80%;
     margin-left: auto;
     margin-right: auto;
-    height: 100vh;
+    height: fit-content;
 }
 .search-button{
     width: 60px;
@@ -10,13 +10,43 @@
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 1px 3px #00000029;
     border-radius: 28px;
+    border-width: 0;
     opacity: 1;
     margin-right: 5%;
+    cursor: pointer;
 }
 .add-user-button{
     width: 180px;
     height: 40px;
     background: #82A70C 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 3px #00000029;
     border-radius: 5px;
+    border-width: 0;
     opacity: 1;
+    cursor: pointer;
+}
+
+.payroll-table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    width: 100%;
+}
+
+.payroll-table thead tr{
+    background-color: #42515F;
+    color: #FFFFFF;
+    text-align: left;
+    font-weight: bold;
+}
+
+.payroll-table th,
+.payroll-table td{
+    padding: 12px 15px;
+}
+
+.payroll-table tbody tr{
+    color: #FFFFFF;
+    color: #3D3D3D;
+    border-bottom: 1px solid #E3E3E3;
 }

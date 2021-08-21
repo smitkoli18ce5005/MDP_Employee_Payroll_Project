@@ -112,6 +112,7 @@ body{
 .elements-button-div > h2{
     color: #42515F;
     font-size: 28px;
+    margin-top: 1%;
 }
 .button-pair{
     display: flex;
