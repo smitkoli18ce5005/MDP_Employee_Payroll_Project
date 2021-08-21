@@ -19,6 +19,10 @@ UC 9            - On Form Submit populate the Employee Payroll Data Object {
                     - Add additional fields to Employee Payroll as required
                     - Perform the validation on the setter method
                   } 
+UC 10           - Perform Validation Employee Payroll Data setter methods {
+                    - Name - Name must starts with Cap and has minimum 3 characters
+                    - Start Date - Must not be future date. As well as should be within 30 days of joining.
+                  }
 UC 11           - Ability to create an Employee Payroll System Home Page UI - Note that the Header is exactly same as the
                   Add Employee Payroll form UI. So take it as is.
 UC 12           - Ability to create a Header Section with Employee Details and Add Employee button

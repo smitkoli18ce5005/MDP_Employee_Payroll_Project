@@ -77,6 +77,15 @@ body{
     flex-direction: row;
     align-items: center;
 }
+.inputs-div-name{
+    flex-basis: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.error > small{
+   color: red;
+}
 .inputs > img,p,select{
     margin-left: 1%;
     margin-right: 5%;
