@@ -46,7 +46,7 @@
 }
 
 .payroll-table tbody tr{
-    color: #FFFFFF;
+    background-color: #FFFFFF;
     color: #3D3D3D;
     border-bottom: 1px solid #E3E3E3;
 }

@@ -47,6 +47,7 @@ class EmployeePayroll{
                 departmentList.push(department[i].value);
             }
         }
+        console.log(departmentList);
         _department = departmentList;
     }
 
@@ -102,18 +103,21 @@ function validate(){
 
 function createPayrollObject() {
     let payrollOject = {};
-    if(_name != undefined && _day != undefined && _month != undefined && _year != undefined){
-        payrollOject["name"] = emp.name;
-        payrollOject["profileID"] = emp.profileID;
-        payrollOject["gender"] = emp.gender;
-        payrollOject["department"] = emp.department;
-        payrollOject["salary"] = emp.salary;
-        payrollOject["date"] = emp.date;
-        payrollOject["notes"] = emp.notes;
-        payrollOjectList.push(payrollOject)
-        console.log(payrollOject);
-        console.log(payrollOjectList);
+    payrollOject["name"] = emp.name;
+    payrollOject["profileID"] = emp.profileID;
+    payrollOject["gender"] = emp.gender;
+    payrollOject["department"] = emp.department;
+    payrollOject["salary"] = emp.salary;
+    payrollOject["date"] = emp.date;
+    payrollOject["notes"] = emp.notes;
+
+    let localPayrollList = JSON.parse(localStorage.getItem('EmployeePayrollList'));
+    if(localPayrollList != undefined){
+        localPayrollList.push(payrollOject);
+    }else{
+        localPayrollList = [payrollOject];
     }
+    localStorage.setItem('EmployeePayrollList', JSON.stringify(localPayrollList));
 }
 
 function reset() {
@@ -165,30 +169,32 @@ let empObjList = [
     }
 ]
 
-let table_header =`<tr>
-                <th></th>
-                <th>NAME</th>
-                <th>GENDER</th>
-                <th>DEPARTMENT</th>
-                <th>SALARY</th>
-                <th>START DATE</th>
-                <th>ACTIONS</th>
-                </tr>`;
+function createTable(){
+    let table_header =`<thead><tr>
+                            <th></th>
+                            <th>NAME</th>
+                            <th>GENDER</th>
+                            <th>DEPARTMENT</th>
+                            <th>SALARY</th>
+                            <th>START DATE</th>
+                            <th>ACTIONS</th>
+                            </tr><thead><tbody>`;
 
-let table_content = `${table_header}`
+    let table_content = `${table_header}`
 
-empObjList.forEach(empObj => {
-    table_content = `${table_content}
-    <tr>
-    <td><img src="${empObj.profileID}" alt="1"></td>
-    <td>${empObj.name}</td>
-    <td>${empObj.gender}</td>
-    <td>${empObj.department}</td>
-    <td>&#x20B9; ${empObj.salary}</td>
-    <td>${empObj.date}</td>
-    <td>&#128465; &nbsp; &#9998;</td>
-    </tr>`
-    console.log(table_content);
+    empObjList.forEach(empObj => {
+            table_content = `${table_content}
+            <tr>
+            <td><img src="${empObj.profileID}" alt="1"></td>
+            <td>${empObj.name}</td>
+            <td>${empObj.gender}</td>
+            <td>${empObj.department}</td>
+            <td>&#x20B9; ${empObj.salary}</td>
+            <td>${empObj.date[0] +" " +empObj.date[1] +" " +empObj.date[2]}</td>
+            <td>&#128465; &nbsp; &#9998;</td>
+            </tr>`
+            console.log(table_content);
 
-    document.getElementById('payroll-table').innerHTML = table_content;
-});
+            document.getElementById('payroll-table').innerHTML = table_content;
+    });
+}

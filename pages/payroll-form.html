@@ -45,25 +45,25 @@
                     <div class="elements-div">
                         <div class="labels"><label for="gender">Gender</label></div>
                         <div class="inputs">
-                            <input type="radio" name="gender" id="male" value="Male"><p>Male</p>
-                            <input type="radio" name="gender" id="female" value="Female"><p>Female</p>
+                            <input type="radio" name="gender" id="male" value="male"><p>Male</p>
+                            <input type="radio" name="gender" id="female" value="female"><p>Female</p>
                         </div> 
                     </div>
                     <div class="elements-div">
                         <div class="labels"><label for="department">Department</label></div>
                         <div class="inputs inputs-450px">
-                            <input type="checkbox" name="department" id="department-1" value="HR"><p>HR</p>
-                            <input type="checkbox" name="department" id="department-2" value="Sales"><p>Sales</p>
-                            <input type="checkbox" name="department" id="department-3" value="Finance"><p>Finance</p>
-                            <input type="checkbox" name="department" id="department-4" value="Engineer"><p>Engineer</p>
-                            <input type="checkbox" name="department" id="department-5" value="Others"><p>Others</p>
+                            <input name="department" id="department-1" value="HR" type="checkbox"><p>HR</p>
+                            <input name="department" id="department-2" value="Sales" type="checkbox"><p>Sales</p>
+                            <input name="department" id="department-3" value="Finance" type="checkbox"><p>Finance</p>
+                            <input name="department" id="department-4" value="Engineer" type="checkbox"><p>Engineer</p>
+                            <input name="department" id="department-5" value="Others" type="checkbox"><p>Others</p>
                         </div>
                     </div>
                     <div class="elements-div">
                         <div class="labels"><label for="salary">Salary</label></div>
                         <div class="inputs">
                             <input class="input-salary" id="salary" type="range" min="1" max="50000" value="25000" oninput="this.nextElementSibling.value = this.value">
-                            &nbsp;&#x20B9;&nbsp;<output id="output-salary">25000</output>
+                            &nbsp;&#x20B9;&nbsp;<output>25000</output>
                         </div>       
                     </div>
                     <div class="elements-div">
@@ -137,7 +137,7 @@
                     </div>
                     <div class="elements-div">
                         <div class="labels"><label for="notes">Notes</label></div>
-                        <div class="inputs"><textarea class="input-notes" id="notes" placeholder="Start typing..."></textarea></div>
+                        <div class="inputs"><textarea class="input-notes" name="notes" id="notes" placeholder="Start typing..."></textarea></div>
                     </div>
                     <div class="elements-button-div">
                         <button class="cancel-button" name="cancel-button" onclick="location.href=`../pages/index.html`" target="_blank">Cancel</button>
