@@ -36,34 +36,34 @@
                     <div class="elements-div">
                         <div class="labels"><label for="profile">Profile Image</label></div>
                         <div class="inputs">
-                            <input type="radio" name="profile-radio" id="profile-photo" value="0"><img src="../assets/Ellipse -1.png" alt="">
-                            <input type="radio" name="profile-radio" id="profile-photo" value="0"><img src="../assets/Ellipse -2.png" alt="">
-                            <input type="radio" name="profile-radio" id="profile-photo" value="0"><img src="../assets/Ellipse -3.png" alt="">
-                            <input type="radio" name="profile-radio" id="profile-photo" value="0"><img src="../assets/Ellipse -4.png" alt="">
+                            <input type="radio" name="profile-radio" id="profile-photo-1" value="../assets/Ellipse -1.png"><img src="../assets/Ellipse -1.png" alt="">
+                            <input type="radio" name="profile-radio" id="profile-photo-2" value="../assets/Ellipse -2.png"><img src="../assets/Ellipse -2.png" alt="">
+                            <input type="radio" name="profile-radio" id="profile-photo-3" value="../assets/Ellipse -3.png"><img src="../assets/Ellipse -3.png" alt="">
+                            <input type="radio" name="profile-radio" id="profile-photo-4" value="../assets/Ellipse -4.png"><img src="../assets/Ellipse -4.png" alt="">
                         </div>     
                     </div>
                     <div class="elements-div">
                         <div class="labels"><label for="gender">Gender</label></div>
                         <div class="inputs">
-                            <input type="radio" name="gender" value="male"><p>Male</p>
-                            <input type="radio" name="gender" value="female"><p>Female</p>
+                            <input type="radio" name="gender" id="male" value="Male"><p>Male</p>
+                            <input type="radio" name="gender" id="female" value="Female"><p>Female</p>
                         </div> 
                     </div>
                     <div class="elements-div">
                         <div class="labels"><label for="department">Department</label></div>
                         <div class="inputs inputs-450px">
-                            <input type="checkbox"><p>HR</p>
-                            <input type="checkbox"><p>Sales</p>
-                            <input type="checkbox"><p>Finance</p>
-                            <input type="checkbox"><p>Engineer</p>
-                            <input type="checkbox"><p>Others</p>
+                            <input type="checkbox" name="department" id="department-1" value="HR"><p>HR</p>
+                            <input type="checkbox" name="department" id="department-2" value="Sales"><p>Sales</p>
+                            <input type="checkbox" name="department" id="department-3" value="Finance"><p>Finance</p>
+                            <input type="checkbox" name="department" id="department-4" value="Engineer"><p>Engineer</p>
+                            <input type="checkbox" name="department" id="department-5" value="Others"><p>Others</p>
                         </div>
                     </div>
                     <div class="elements-div">
                         <div class="labels"><label for="salary">Salary</label></div>
                         <div class="inputs">
                             <input class="input-salary" id="salary" type="range" min="1" max="50000" value="25000" oninput="this.nextElementSibling.value = this.value">
-                            &nbsp;&#x20B9;&nbsp;<output>25000</output>
+                            &nbsp;&#x20B9;&nbsp;<output id="output-salary">25000</output>
                         </div>       
                     </div>
                     <div class="elements-div">
@@ -137,13 +137,13 @@
                     </div>
                     <div class="elements-div">
                         <div class="labels"><label for="notes">Notes</label></div>
-                        <div class="inputs"><textarea class="input-notes" name="notes" placeholder="Start typing..."></textarea></div>
+                        <div class="inputs"><textarea class="input-notes" id="notes" placeholder="Start typing..."></textarea></div>
                     </div>
                     <div class="elements-button-div">
-                        <button class="cancel-button" name="cancel-button">Cancel</button>
+                        <button class="cancel-button" name="cancel-button" onclick="location.href=`../pages/index.html`" target="_blank">Cancel</button>
                         <div class="button-pair">
                             <button name="submit-button" onclick="validate()">Submit</button>&nbsp;&nbsp;&nbsp;
-                            <button name="reset-button">Reset</button>
+                            <button name="reset-button" onclick="reset()">Reset</button>
                         </div>
                     </div>
                 </div>
