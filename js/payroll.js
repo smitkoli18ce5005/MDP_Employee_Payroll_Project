@@ -58,6 +58,10 @@ class EmployeePayroll{
 
     get date(){return [_day,_month,_year];}
     set date([day, month, year]){
+        let monthsInWords = {
+            1:"Jan", 2:"Feb", 3:"Mar", 4:"Apr", 5:"May", 6:"Jun", 7:"Jul", 8:"Aug", 9:"Sep", 10:"Oct", 11:"Nov", 12:"Dec"
+        }
+
         let inputDate = new Date(year.value, month.value, day.value)
         let inputDateInMs = inputDate.getTime()
         const timeElapsed = Date.now()
@@ -68,7 +72,7 @@ class EmployeePayroll{
             const small = div.querySelector('small');
             small.innerText = ""
             _day = day.value;
-            _month = month.value;
+            _month = monthsInWords[month.value];
             _year = year.value;
             console.log("valid date");
         }
@@ -139,36 +143,8 @@ function reset() {
     document.getElementById('notes').value = '';
 }
 
-let empObjList = [
-    {
-        profileID: "../assets/Ellipse -2.png",
-        name: "Smit",
-        gender: "Male",
-        department: ["Sales", "HR"],
-        salary: 28900,
-        date: ["18", "8", "2021"],
-        notes: "This is me"
-    },
-    {
-        profileID: "../assets/Ellipse -2.png",
-        name: "Koli",
-        gender: "Male",
-        department: ["Sales", "HR"],
-        salary: 28900,
-        date: ["18", "8", "2021"],
-        notes: "This is me"
-    },
-    {
-        profileID: "../assets/Ellipse -2.png",
-        name: "Amit",
-        gender: "Male",
-        department: ["Sales", "HR"],
-        salary: 28900,
-        date: ["18", "8", "2021"],
-        notes: "This is me"
-    }
-]
-
+let empObjList = JSON.parse(localStorage.getItem('EmployeePayrollList'));
+document.getElementById('table-count').innerText = empObjList.length;
 function createTable(){
     let table_header =`<thead><tr>
                             <th></th>
@@ -188,7 +164,7 @@ function createTable(){
             <td><img src="${empObj.profileID}" alt="1"></td>
             <td>${empObj.name}</td>
             <td>${empObj.gender}</td>
-            <td>${empObj.department}</td>
+            <td class="department">${empObj.department}</td>
             <td>&#x20B9; ${empObj.salary}</td>
             <td>${empObj.date[0] +" " +empObj.date[1] +" " +empObj.date[2]}</td>
             <td>&#128465; &nbsp; &#9998;</td>

@@ -34,3 +34,7 @@ UC 15           - Ability to view Employee Payroll details in a Tabular Format f
                     - Make sure to create an HTML to showcase each Department
                     - Make sure to use the for loop to populate multiple
                   }
+UC 16           - Ability to view Employee Payroll details from Local Storage {
+                    - Retrieve Employee Payroll Data from Local Storage and assign to variable that has a scope across
+                      js file and display the number in the Header Text.
+                  }
