@@ -7,7 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/payroll-form.css">
 </head>
-<body>
+<body onload="checkForUpdates()">
     <div class="main-div">
         <div class="header-div">
             <div class="header">
@@ -140,9 +140,9 @@
                         <div class="inputs"><textarea class="input-notes" name="notes" id="notes" placeholder="Start typing..."></textarea></div>
                     </div>
                     <div class="elements-button-div">
-                        <button class="cancel-button" name="cancel-button" onclick="location.href=`../pages/index.html`" target="_blank">Cancel</button>
+                        <button class="cancel-button" name="cancel-button" onclick="cancel()" target="_blank">Cancel</button>
                         <div class="button-pair">
-                            <button name="submit-button" onclick="validate()">Submit</button>&nbsp;&nbsp;&nbsp;
+                            <button name="submit-button" onclick="submit()">Submit</button>&nbsp;&nbsp;&nbsp;
                             <button name="reset-button" onclick="reset()">Reset</button>
                         </div>
                     </div>

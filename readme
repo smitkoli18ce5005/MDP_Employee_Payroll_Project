@@ -38,3 +38,4 @@ UC 16           - Ability to view Employee Payroll details from Local Storage {
                     - Retrieve Employee Payroll Data from Local Storage and assign to variable that has a scope across
                       js file and display the number in the Header Text.
                   }
+UC 17           - Ability to delete and update user 

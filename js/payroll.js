@@ -1,6 +1,8 @@
 let _name,_day,_month,_year,_profileID,_gender,_department,_salary,_notes;
 let payrollOjectList = [];
-
+let monthsInWords = {
+    1:"Jan", 2:"Feb", 3:"Mar", 4:"Apr", 5:"May", 6:"Jun", 7:"Jul", 8:"Aug", 9:"Sep", 10:"Oct", 11:"Nov", 12:"Dec"
+}
 class EmployeePayroll{
     get name(){return _name;}
     set name(name){
@@ -56,9 +58,7 @@ class EmployeePayroll{
 
     get date(){return [_day,_month,_year];}
     set date([day, month, year]){
-        let monthsInWords = {
-            1:"Jan", 2:"Feb", 3:"Mar", 4:"Apr", 5:"May", 6:"Jun", 7:"Jul", 8:"Aug", 9:"Sep", 10:"Oct", 11:"Nov", 12:"Dec"
-        }
+        
 
         let inputDate = new Date(year.value, month.value, day.value)
         let inputDateInMs = inputDate.getTime()
@@ -70,7 +70,7 @@ class EmployeePayroll{
             const small = div.querySelector('small');
             small.innerText = ""
             _day = day.value;
-            _month = monthsInWords[month.value];
+            _month = month.value;
             _year = year.value;
         }
         else{
@@ -90,7 +90,7 @@ class EmployeePayroll{
 
 const emp = new EmployeePayroll();
 
-function validate(){
+function submit(){
     emp.name = document.getElementById('name');
     emp.profileID = document.getElementsByName('profile-radio');
     emp.gender = document.getElementsByName('gender');
@@ -98,15 +98,20 @@ function validate(){
     emp.salary = document.getElementById('salary-input');
     emp.date = [document.getElementById('day'), document.getElementById('month'), document.getElementById('year')];
     emp.notes = document.getElementById('notes');
-    let payrollObject = createPayrollObject();
-    if(payrollObject){
-        createUpdateLocalStorage(payrollObject);
-        reset(); 
-        alert("User Added successfully!");
+    if(localStorage.getItem('key') != undefined){
+        updateExistingObject();
+        console.log("Updating existing object");
+    }else{
+        let payrollObject = createPayrollObject();
+        if(payrollObject){
+            createUpdateLocalStorage(payrollObject);
+            reset(); 
+            alert("User Added successfully!");
+        }
     }
 }
 
-function createPayrollObject() {
+function createPayrollObject(key) {
     let payrollObject = {};
     payrollObject["name"] = emp.name;
     payrollObject["profileID"] = emp.profileID;
@@ -115,11 +120,15 @@ function createPayrollObject() {
     payrollObject["salary"] = emp.salary;
     payrollObject["date"] = emp.date;
     payrollObject["notes"] = emp.notes;
-    var uniq = new Date().getTime();
-    payrollObject["id"] = uniq;
-    if(payrollObject.name != undefined && payrollObject.date[0] != undefined && payrollObject.profileID != undefined &&
-        payrollObject.gender != undefined && payrollObject.department != undefined && payrollObject.salary != undefined &&
-        payrollObject.notes != undefined && payrollObject.id != undefined){
+    if(key != undefined){
+        payrollObject["id"] = key;
+    }else{
+        var uniq = new Date().getTime();
+        payrollObject["id"] = uniq;
+    }
+    if(payrollObject.name != undefined && payrollObject.date[0] != undefined && payrollObject.profileID.length != undefined &&
+        payrollObject.gender != undefined && payrollObject.department.length > 0 && payrollObject.salary != undefined &&
+        payrollObject.notes != undefined && payrollObject.id != undefined && payrollObject.notes.length > 0){
             return payrollObject;
     }else{
         alert("Please fill all details");
@@ -158,20 +167,94 @@ function reset() {
     document.getElementById('salary-output').innerHTML = salaryHTML;
 }
 
-function deleteUser(obj){
-    console.log("To delete");
-    
+function cancel() {
+    window.location = '../pages/index.html';
+    localStorage.removeItem('key');
 }
 
-function updateUser(obj){
-    console.log("To update");
-    window.location.href = "../pages/payroll-form.html";
-    
+function findIndex(key){
+    let empObjList = JSON.parse(localStorage.getItem('EmployeePayrollList'));
+    for(let i=0;i<empObjList.length;i++){
+        if(empObjList[i].id == key){
+            return i;
+        }
+    }
+    return false;
 }
 
-let empObjList = JSON.parse(localStorage.getItem('EmployeePayrollList'));
-document.getElementById('table-count').innerText = empObjList.length;
+function updateExistingObject() {
+    let key = localStorage.getItem('key');
+    let updatedObject = createPayrollObject(key);
+
+    let empObjList = JSON.parse(localStorage.getItem('EmployeePayrollList'));
+    empObjList.splice(findIndex(key), 1, updatedObject);
+    localStorage.setItem('EmployeePayrollList', JSON.stringify(empObjList));
+    reset(); 
+    alert("User details updated successfully!");
+}
+
+function setValues(index, empObjList, key) {
+    document.getElementById('name').value = empObjList[index].name;
+
+    let profileRadio = document.getElementsByName('profile-radio');
+    for(let i=0;i<profileRadio.length;i++){
+        if(profileRadio[i].value == empObjList[index].profileID){
+            document.getElementById("profile-photo-" +(i+1)).checked = true;
+        }
+    }
+
+    let gender = document.getElementsByName('gender');
+    for(let i=0;i<gender.length;i++){
+        if(gender[i].value == empObjList[index].gender){
+            document.getElementById(gender[i].id).checked = true;
+        }
+    }
+
+    let department = document.getElementsByName('department');
+    for(let i=0;i<department.length;i++){
+        if(empObjList[index].department.includes(department[i].value)){
+            document.getElementById("department-" +(i+1)).checked = true;
+        }
+    }
+ 
+    document.getElementById('day').value = empObjList[index].date[0];
+    document.getElementById('month').value = empObjList[index].date[1];
+    document.getElementById('year').value = empObjList[index].date[2];
+
+    document.getElementById('notes').value = empObjList[index].notes;
+
+    document.getElementById('salary-input').value = empObjList[index].salary;
+    let salaryHTML = `<p>${empObjList[index].salary}</p>`;
+    document.getElementById('salary-output').innerHTML = salaryHTML;
+
+}
+
+function checkForUpdates() {
+    
+    if(localStorage.getItem('key') != undefined){
+        let index = findIndex(localStorage.getItem("key"));
+        let empObjList = JSON.parse(localStorage.getItem('EmployeePayrollList'));
+        
+        setValues(index, empObjList, localStorage.getItem('key').value);
+    }
+}
+
+function deleteUser(key){
+    let empObjList = JSON.parse(localStorage.getItem('EmployeePayrollList'));
+    empObjList.splice(findIndex(key), 1);
+    localStorage.setItem('EmployeePayrollList', JSON.stringify(empObjList));
+    location.reload();
+}
+
+function updateUser(key){
+    window.location = '../pages/payroll-form.html';
+    localStorage.setItem("key", key);
+}
+
+
 function createTable(){
+    let empObjList = JSON.parse(localStorage.getItem('EmployeePayrollList'));
+    document.getElementById('table-count').innerText = empObjList.length;
     let table_header =`<thead><tr>
                             <th></th>
                             <th>NAME</th>
@@ -192,10 +275,10 @@ function createTable(){
             <td>${empObj.gender}</td>
             <td class="department">${empObj.department}</td>
             <td>&#x20B9; ${empObj.salary}</td>
-            <td>${empObj.date[0] +" " +empObj.date[1] +" " +empObj.date[2]}</td>
+            <td>${empObj.date[0] +" " +monthsInWords[empObj.date[1]] +" " +empObj.date[2]}</td>
             <td><div>
-                <button class="inside-button" id="${empObj.id}" onclick="deleteUser()">&#128465;</button>
-                <button class="inside-button" id="${empObj.id}" onclick="updateUser()">&#9998;</button>
+                <button class="inside-button" id="${empObj.id}" onclick="deleteUser(this.id)">&#128465;</button>
+                <button class="inside-button" id="${empObj.id}" onclick="updateUser(this.id)">&#9998;</button>
                 </div>
             </td>
             </tr>`
