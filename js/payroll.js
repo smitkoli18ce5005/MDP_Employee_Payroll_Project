@@ -1,7 +1,6 @@
 let _name,_day,_month,_year,_profileID,_gender,_department,_salary,_notes;
 let payrollOjectList = [];
 
-
 class EmployeePayroll{
     get name(){return _name;}
     set name(name){
@@ -47,7 +46,6 @@ class EmployeePayroll{
                 departmentList.push(department[i].value);
             }
         }
-        console.log(departmentList);
         _department = departmentList;
     }
 
@@ -74,7 +72,6 @@ class EmployeePayroll{
             _day = day.value;
             _month = monthsInWords[month.value];
             _year = year.value;
-            console.log("valid date");
         }
         else{
             const div = day.parentElement;
@@ -82,7 +79,6 @@ class EmployeePayroll{
             const small = div.querySelector('small');
             small.innerText = "Invalid date";
             alert("Start Date should be within 30 days of joining!");
-            console.log("Invalid date");
         }
     }
     
@@ -99,30 +95,46 @@ function validate(){
     emp.profileID = document.getElementsByName('profile-radio');
     emp.gender = document.getElementsByName('gender');
     emp.department = document.getElementsByName('department');
-    emp.salary = document.getElementById('salary');
+    emp.salary = document.getElementById('salary-input');
     emp.date = [document.getElementById('day'), document.getElementById('month'), document.getElementById('year')];
     emp.notes = document.getElementById('notes');
-    createPayrollObject();
+    let payrollObject = createPayrollObject();
+    if(payrollObject){
+        createUpdateLocalStorage(payrollObject);
+        reset(); 
+        alert("User Added successfully!");
+    }
 }
 
 function createPayrollObject() {
-    let payrollOject = {};
-    payrollOject["name"] = emp.name;
-    payrollOject["profileID"] = emp.profileID;
-    payrollOject["gender"] = emp.gender;
-    payrollOject["department"] = emp.department;
-    payrollOject["salary"] = emp.salary;
-    payrollOject["date"] = emp.date;
-    payrollOject["notes"] = emp.notes;
+    let payrollObject = {};
+    payrollObject["name"] = emp.name;
+    payrollObject["profileID"] = emp.profileID;
+    payrollObject["gender"] = emp.gender;
+    payrollObject["department"] = emp.department;
+    payrollObject["salary"] = emp.salary;
+    payrollObject["date"] = emp.date;
+    payrollObject["notes"] = emp.notes;
+    var uniq = new Date().getTime();
+    payrollObject["id"] = uniq;
+    if(payrollObject.name != undefined && payrollObject.date[0] != undefined && payrollObject.profileID != undefined &&
+        payrollObject.gender != undefined && payrollObject.department != undefined && payrollObject.salary != undefined &&
+        payrollObject.notes != undefined && payrollObject.id != undefined){
+            return payrollObject;
+    }else{
+        alert("Please fill all details");
+    }
+}
 
+function createUpdateLocalStorage(payrollObject) {
     let localPayrollList = JSON.parse(localStorage.getItem('EmployeePayrollList'));
     if(localPayrollList != undefined){
-        localPayrollList.push(payrollOject);
+        localPayrollList.push(payrollObject);
     }else{
-        localPayrollList = [payrollOject];
+        localPayrollList = [payrollObject];
     }
     localStorage.setItem('EmployeePayrollList', JSON.stringify(localPayrollList));
-}
+}   
 
 function reset() {
     document.getElementById('name').value = '';
@@ -141,6 +153,20 @@ function reset() {
     document.getElementById('month').value = 0;
     document.getElementById('year').value = 0;
     document.getElementById('notes').value = '';
+    document.getElementById('salary-input').value = 25000;
+    let salaryHTML = `<p>25000</p>`;
+    document.getElementById('salary-output').innerHTML = salaryHTML;
+}
+
+function deleteUser(obj){
+    console.log("To delete");
+    
+}
+
+function updateUser(obj){
+    console.log("To update");
+    window.location.href = "../pages/payroll-form.html";
+    
 }
 
 let empObjList = JSON.parse(localStorage.getItem('EmployeePayrollList'));
@@ -167,9 +193,12 @@ function createTable(){
             <td class="department">${empObj.department}</td>
             <td>&#x20B9; ${empObj.salary}</td>
             <td>${empObj.date[0] +" " +empObj.date[1] +" " +empObj.date[2]}</td>
-            <td>&#128465; &nbsp; &#9998;</td>
+            <td><div>
+                <button class="inside-button" id="${empObj.id}" onclick="deleteUser()">&#128465;</button>
+                <button class="inside-button" id="${empObj.id}" onclick="updateUser()">&#9998;</button>
+                </div>
+            </td>
             </tr>`
-            console.log(table_content);
 
             document.getElementById('payroll-table').innerHTML = table_content;
     });
