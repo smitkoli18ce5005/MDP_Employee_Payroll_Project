@@ -127,7 +127,8 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 5%;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 button{
     width: 120px;

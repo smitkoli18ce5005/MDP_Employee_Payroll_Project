@@ -24,31 +24,17 @@ class EmployeePayroll{
 
     get profileID(){return _profileID;}
     set profileID(profileRadio){
-        for(let i=0;i<profileRadio.length;i++){
-            if(profileRadio[i].checked){
-                _profileID = profileRadio[i].value;
-            }
-        }
+        _profileID = this.forRadio(profileRadio);
     }
 
     get gender(){return _gender;}
     set gender(gender){
-        for(let i=0;i<gender.length;i++){
-            if(gender[i].checked){
-                _gender = gender[i].value;
-            }
-        }
+        _gender = this.forRadio(gender);
     }
 
     get department(){return _department;}
     set department(department){
-        let departmentList = [];
-        for(let i=0;i<department.length;i++){
-            if(department[i].checked){
-                departmentList.push(department[i].value);
-            }
-        }
-        _department = departmentList;
+        _department = this.forCheckbox(department);
     }
 
     get salary(){return _salary;}
@@ -58,8 +44,6 @@ class EmployeePayroll{
 
     get date(){return [_day,_month,_year];}
     set date([day, month, year]){
-        
-
         let inputDate = new Date(year.value, month.value, day.value)
         let inputDateInMs = inputDate.getTime()
         const timeElapsed = Date.now()
@@ -85,6 +69,26 @@ class EmployeePayroll{
     get notes(){return _notes;}
     set notes(notes){
         _notes = notes.value;
+    }
+
+    forRadio(element){
+        let _element;
+        for(let i=0;i<element.length;i++){
+            if(element[i].checked){
+                _element = element[i].value;
+            }
+        }
+        return _element;
+    }
+
+    forCheckbox(element){
+        let elementList = [];
+        for(let i=0;i<element.length;i++){
+            if(element[i].checked){
+                elementList.push(element[i].value);
+            }
+        }
+        return elementList;
     }
 }
 
@@ -243,7 +247,8 @@ function deleteUser(key){
     let empObjList = JSON.parse(localStorage.getItem('EmployeePayrollList'));
     empObjList.splice(findIndex(key), 1);
     localStorage.setItem('EmployeePayrollList', JSON.stringify(empObjList));
-    location.reload();
+    //location.reload();
+    createTable();
 }
 
 function updateUser(key){
@@ -273,7 +278,7 @@ function createTable(){
             <td><img src="${empObj.profileID}" alt="1"></td>
             <td>${empObj.name}</td>
             <td>${empObj.gender}</td>
-            <td class="department">${empObj.department}</td>
+            <td><div class="department">${empObj.department.join(" ")}<div></td>
             <td>&#x20B9; ${empObj.salary}</td>
             <td>${empObj.date[0] +" " +monthsInWords[empObj.date[1]] +" " +empObj.date[2]}</td>
             <td><div>
@@ -282,7 +287,6 @@ function createTable(){
                 </div>
             </td>
             </tr>`
-
-            document.getElementById('payroll-table').innerHTML = table_content;
     });
+    document.getElementById('payroll-table').innerHTML = table_content;
 }

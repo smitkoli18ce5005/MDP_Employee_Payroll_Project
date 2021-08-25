@@ -4,16 +4,28 @@
     margin-right: auto;
     height: fit-content;
 }
+
+.table-count-div{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+.table-count-div > h2{
+    color: #42515F;
+    font-size: 28px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+}
 .table-count{
-    width: 50px;
-    height: 35px;
+    width: 60px;
+    height: 40px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     box-shadow: 0px 1px 3px #00000029;
     border-radius: 28px;
     border-width: 0;
     opacity: 1;
-    padding: 0;
-    margin: 0;
+    margin-top: auto;
+    margin-bottom: auto;
     text-align: center;
     background-color: #82A70C;
     color: #FFFFFF;
@@ -80,4 +92,17 @@
     background-color: #FFFFFF;
     color: #3D3D3D;
     border-bottom: 1px solid #E3E3E3;
+}
+
+
+@media screen and (max-width:1100px) {
+    .home-content{
+        width: 95%;
+    }
+}
+
+@media screen and (max-width:680px) {
+    .home-content{
+        width: 100%;
+    }
 }
