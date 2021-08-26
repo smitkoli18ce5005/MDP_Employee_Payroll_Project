@@ -94,6 +94,13 @@
     border-bottom: 1px solid #E3E3E3;
 }
 
+.department{
+    background: #E9FEA5 0% 0% no-repeat padding-box;
+    border-radius: 13px;
+    padding: 2%;
+    opacity: 1;
+}
+
 
 @media screen and (max-width:1100px) {
     .home-content{

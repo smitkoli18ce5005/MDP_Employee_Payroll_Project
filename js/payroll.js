@@ -172,7 +172,7 @@ function reset() {
 }
 
 function cancel() {
-    window.location = '../pages/index.html';
+    window.location = '../pages/home-page.html';
     localStorage.removeItem('key');
 }
 
@@ -256,6 +256,13 @@ function updateUser(key){
     localStorage.setItem("key", key);
 }
 
+function department(deptlist){
+    let deptmt = "";
+    for(const dept of deptlist){
+        deptmt = `${deptmt}<label class = "department">${dept}</label>${" "}`;
+    }
+    return deptmt;
+}
 
 function createTable(){
     let empObjList = JSON.parse(localStorage.getItem('EmployeePayrollList'));
@@ -271,14 +278,15 @@ function createTable(){
                             </tr><thead><tbody>`;
 
     let table_content = `${table_header}`
-
+    
     empObjList.forEach(empObj => {
+            let dept = department(empObj.department);
             table_content = `${table_content}
             <tr>
             <td><img src="${empObj.profileID}" alt="1"></td>
             <td>${empObj.name}</td>
             <td>${empObj.gender}</td>
-            <td><div class="department">${empObj.department.join(" ")}<div></td>
+            <td>${dept}</td>
             <td>&#x20B9; ${empObj.salary}</td>
             <td>${empObj.date[0] +" " +monthsInWords[empObj.date[1]] +" " +empObj.date[2]}</td>
             <td><div>
