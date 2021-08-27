@@ -40,3 +40,4 @@ UC 16           - Ability to view Employee Payroll details from Local Storage {
                   }
 UC 17           - Ability to delete and update user 
 UC 18           - Using common method for seting Profile-ID and Gender
+UC 19           - AJAX calls using json-server

@@ -1,0 +1,37 @@
+{
+  "EmployeePayrollList": [
+    {
+      "date": [
+        "18",
+        "8",
+        "2021"
+      ],
+      "department": [
+        "Sales",
+        "Finance",
+        "Others"
+      ],
+      "gender": "Male",
+      "id": 1629979827669,
+      "name": "Smit",
+      "notes": "Hello",
+      "profileID": "../assets/Ellipse -3.png"
+    },
+    {
+      "date": [
+        "13",
+        "8",
+        "2021"
+      ],
+      "department": [
+        "HR",
+        "Finance"
+      ],
+      "gender": "Male",
+      "id": 1629979829679,
+      "name": "Amit",
+      "notes": "My name is Amit",
+      "profileID": "../assets/Ellipse -3.png"
+    }
+  ]
+}
