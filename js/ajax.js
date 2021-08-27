@@ -54,3 +54,14 @@ function addData() {
       console.log("Server responded with error\n" + error);
     });
 }
+
+function deleteData() {
+
+  makeAjaxCall("delete", home_url+"9624459820569", (async = true))
+    .then((responseText) => {
+      console.log("Added object: " + responseText);
+    })
+    .catch((error) => {
+      console.log("Server responded with error\n" + error);
+    });
+}
