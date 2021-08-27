@@ -7,14 +7,12 @@
         "2021"
       ],
       "department": [
-        "Sales",
-        "Finance",
-        "Others"
+        "Sales"
       ],
       "gender": "Male",
       "id": 1629979827669,
       "name": "Smit",
-      "notes": "Hello",
+      "notes": "Hello my name is smit",
       "profileID": "../assets/Ellipse -3.png"
     },
     {

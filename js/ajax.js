@@ -56,8 +56,27 @@ function addData() {
 }
 
 function deleteData() {
+  makeAjaxCall("delete", home_url + "9624459820569", (async = true))
+    .then((responseText) => {
+      console.log("Added object: " + responseText);
+    })
+    .catch((error) => {
+      console.log("Server responded with error\n" + error);
+    });
+}
 
-  makeAjaxCall("delete", home_url+"9624459820569", (async = true))
+function updateData() {
+  let employeeObject = {
+    date: ["18", "8", "2021"],
+    department: ["Sales"],
+    gender: "Male",
+    id: 1629979827669,
+    name: "Smit",
+    notes: "Hello my name is smit",
+    profileID: "../assets/Ellipse -3.png",
+  };
+
+  makeAjaxCall("put", home_url+"1629979827669", (async = true), employeeObject)
     .then((responseText) => {
       console.log("Added object: " + responseText);
     })
