@@ -21,6 +21,7 @@ let monthsInWords = {
   11: "Nov",
   12: "Dec",
 };
+
 class EmployeePayroll {
   get name() {
     return _name;
@@ -256,17 +257,6 @@ function cancel() {
   localStorage.removeItem("key");
 }
 
-function updateExistingObject() {
-  let key = localStorage.getItem("key");
-  let updatedObject = createPayrollObject(key);
-
-  let empObjList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
-  empObjList.splice(findIndex(key), 1, updatedObject);
-  localStorage.setItem("EmployeePayrollList", JSON.stringify(empObjList));
-  reset();
-  alert("User details updated successfully!");
-}
-
 function setValues(empObj) {
   document.getElementById("name").value = empObj.name;
 
@@ -304,15 +294,15 @@ function setValues(empObj) {
 
 function checkForUpdates() {
   if (localStorage.getItem("key") != undefined) {
-      let key = localStorage.getItem("key");
-    makeAjaxCall("get", home_url+key, (async = true))
-    .then((responseText) => {
+    let key = localStorage.getItem("key");
+    makeAjaxCall("get", home_url + key, (async = true))
+      .then((responseText) => {
         console.log(JSON.parse(responseText));
         setValues(JSON.parse(responseText));
-    })
-    .catch((error) => {
-      console.log("Server responded with error\n" + error)
-    });
+      })
+      .catch((error) => {
+        console.log("Server responded with error\n" + error);
+      });
   }
 }
 
@@ -344,7 +334,7 @@ function department(deptlist) {
 function createTable() {
   makeAjaxCall("get", home_url, (async = true))
     .then((responseText) => {
-        let empObjList = JSON.parse(responseText)
+      let empObjList = JSON.parse(responseText);
       document.getElementById("table-count").innerText = empObjList.length;
 
       let table_header = `<thead><tr>
