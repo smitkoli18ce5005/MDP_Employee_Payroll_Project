@@ -8,7 +8,7 @@ function makeAjaxCall(methodType, url, async = false, data = null) {
       if (xhttp.readyState == 4) {
         console.log("Started!");
         if (xhttp.status == 200) {
-          resolve(xhttp.responseText);
+          resolve(JSON.parse(xhttp.responseText));
         } else if (xhttp.status >= 400) {
           reject(error);
         }
@@ -25,13 +25,13 @@ function makeAjaxCall(methodType, url, async = false, data = null) {
   });
 }
 
-function displayData(str) {
+function display(str) {
   makeAjaxCall("get", home_url, (async = true))
     .then((responseText) =>
-      console.log("Respose from the server: " + responseText)
+      console.log("Respose from the server: " + responseText.length)
     )
     .catch((error) => {
-      console.log("Server responded with error\n" + error);
+      console.log("Server responded with error\n" + error)
     });
 }
 
@@ -76,7 +76,12 @@ function updateData() {
     profileID: "../assets/Ellipse -3.png",
   };
 
-  makeAjaxCall("put", home_url+"1629979827669", (async = true), employeeObject)
+  makeAjaxCall(
+    "put",
+    home_url + "1629979827669",
+    (async = true),
+    employeeObject
+  )
     .then((responseText) => {
       console.log("Added object: " + responseText);
     })

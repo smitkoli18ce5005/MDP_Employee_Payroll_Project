@@ -1,35 +1,38 @@
 {
   "EmployeePayrollList": [
     {
-      "date": [
-        "18",
-        "8",
-        "2021"
-      ],
-      "department": [
-        "Sales"
-      ],
-      "gender": "Male",
-      "id": 1629979827669,
       "name": "Smit",
-      "notes": "Hello my name is smit",
-      "profileID": "../assets/Ellipse -3.png"
-    },
-    {
-      "date": [
-        "13",
-        "8",
-        "2021"
-      ],
+      "profileID": "../assets/Ellipse -2.png",
+      "gender": "Male",
       "department": [
-        "HR",
+        "Sales",
         "Finance"
       ],
+      "salary": "28685",
+      "date": [
+        "16",
+        "8",
+        "2021"
+      ],
+      "notes": "adnkjsdsd",
+      "id": 1630129975085
+    },
+    {
+      "name": "Koli",
+      "profileID": "../assets/Ellipse -2.png",
       "gender": "Male",
-      "id": 1629979829679,
-      "name": "Amit",
-      "notes": "My name is Amit",
-      "profileID": "../assets/Ellipse -3.png"
+      "department": [
+        "HR",
+        "Sales"
+      ],
+      "salary": "36670",
+      "date": [
+        "16",
+        "8",
+        "2021"
+      ],
+      "notes": "sa dmsnd sd",
+      "id": 1630130001509
     }
   ]
 }
