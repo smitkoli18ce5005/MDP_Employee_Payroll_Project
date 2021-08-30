@@ -40,6 +40,7 @@ body{
 .main-content{
     background-color: #f7f7f7;
     padding: 1%;
+    height: 100vh;
 }
 .content-div{
     background-color: #ffffff;
@@ -67,12 +68,12 @@ body{
     color: #65727c;
 }
 .labels{
-    flex-basis: 20%;
+    flex-basis: 30%;
     margin-top: auto;
     margin-bottom: auto;
 }
 .inputs{
-    flex-basis: 80%;
+    flex-basis: 70%;
     display: flex;
     flex-direction: row;
     align-items: center;
