@@ -183,3 +183,11 @@ function createCredObject() {
     alert("Please fill all details");
   }
 }
+
+function checkForLogin() {
+  makeAjaxCall("get", login_url, (async = true)).then((result) => {
+    if(JSON.parse(result).pass){
+      window.location = "../pages/home-page.html";
+    }
+  });
+}

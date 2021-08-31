@@ -30,6 +30,27 @@
     background-color: #82A70C;
     color: #FFFFFF;
 }
+.search-div{
+    display: flex;
+    flex-direction: row;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 3px #00000029;
+    border-radius: 28px;
+    border-width: 0;
+    opacity: 1;
+    margin-right: 5%;
+}
+.search-text{
+    width: 120px;
+    height: 40px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 28px;
+    border-width: 0;
+    opacity: 1;
+    margin-left: 3%;
+    margin-right: 2%;
+    outline: none;
+}
 .search-button{
     width: 60px;
     height: 40px;
@@ -38,8 +59,7 @@
     border-radius: 28px;
     border-width: 0;
     opacity: 1;
-    margin-right: 5%;
-    cursor: pointer;
+    justify-content: flex-end;
 }
 .inside-button{
     width: 30px;

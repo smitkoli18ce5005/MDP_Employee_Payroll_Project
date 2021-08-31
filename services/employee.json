@@ -33,6 +33,23 @@
       ],
       "notes": "ssss",
       "id": 1630402589345
+    },
+    {
+      "name": "Niraj",
+      "profileID": "../assets/Ellipse -2.png",
+      "gender": "Male",
+      "department": [
+        "Engineer",
+        "Others"
+      ],
+      "salary": "34035",
+      "date": [
+        "10",
+        "8",
+        "2021"
+      ],
+      "notes": "sssss",
+      "id": 1630414904421
     }
   ],
   "CredObjectList": [
@@ -46,7 +63,7 @@
   ],
   "loginSuccess": [
     {
-      "pass": false,
+      "pass": true,
       "id": 0
     }
   ]

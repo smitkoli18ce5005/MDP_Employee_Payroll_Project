@@ -335,6 +335,52 @@ function department(deptlist) {
   }
   return deptmt;
 }
+
+function buildTable(empObjList){
+  document.getElementById("table-count").innerText = empObjList.length;
+
+  let table_header = `<thead><tr>
+                        <th></th>
+                        <th>NAME</th>
+                        <th>GENDER</th>
+                        <th>DEPARTMENT</th>
+                        <th>SALARY</th>
+                        <th>START DATE</th>
+                        <th>ACTIONS</th>
+                        </tr><thead><tbody>`;
+
+  let table_content = `${table_header}`;
+
+  empObjList.forEach((empObj) => {
+    let dept = department(empObj.department);
+    table_content = `${table_content}
+        <tr>
+        <td><img src="${empObj.profileID}" alt="1"></td>
+        <td>${empObj.name}</td>
+        <td>${empObj.gender}</td>
+        <td>${dept}</td>
+        <td>&#x20B9; ${empObj.salary}</td>
+        <td>${
+          empObj.date[0] +
+          " " +
+          monthsInWords[empObj.date[1]] +
+          " " +
+          empObj.date[2]
+        }</td>
+        <td><div>
+            <button class="inside-button" id="${
+              empObj.id
+            }" onclick="deleteUser(this.id)">&#128465;</button>
+            <button class="inside-button" id="${
+              empObj.id
+            }" onclick="updateUser(this.id)">&#9998;</button>
+            </div>
+        </td>
+        </tr>`;
+  });
+  document.getElementById("payroll-table").innerHTML = table_content;
+}
+
 function createTable() {
   let login_url = "http://localhost:3000/loginSuccess/0";
   makeAjaxCall("get", login_url, (async = true)).then((result) => {
@@ -342,48 +388,7 @@ function createTable() {
         makeAjaxCall("get", home_url, (async = true))
       .then((responseText) => {
         let empObjList = JSON.parse(responseText);
-        document.getElementById("table-count").innerText = empObjList.length;
-
-        let table_header = `<thead><tr>
-                              <th></th>
-                              <th>NAME</th>
-                              <th>GENDER</th>
-                              <th>DEPARTMENT</th>
-                              <th>SALARY</th>
-                              <th>START DATE</th>
-                              <th>ACTIONS</th>
-                              </tr><thead><tbody>`;
-
-        let table_content = `${table_header}`;
-
-        empObjList.forEach((empObj) => {
-          let dept = department(empObj.department);
-          table_content = `${table_content}
-              <tr>
-              <td><img src="${empObj.profileID}" alt="1"></td>
-              <td>${empObj.name}</td>
-              <td>${empObj.gender}</td>
-              <td>${dept}</td>
-              <td>&#x20B9; ${empObj.salary}</td>
-              <td>${
-                empObj.date[0] +
-                " " +
-                monthsInWords[empObj.date[1]] +
-                " " +
-                empObj.date[2]
-              }</td>
-              <td><div>
-                  <button class="inside-button" id="${
-                    empObj.id
-                  }" onclick="deleteUser(this.id)">&#128465;</button>
-                  <button class="inside-button" id="${
-                    empObj.id
-                  }" onclick="updateUser(this.id)">&#9998;</button>
-                  </div>
-              </td>
-              </tr>`;
-        });
-        document.getElementById("payroll-table").innerHTML = table_content;
+        buildTable(empObjList);
       })
       .catch((error) => {
         console.log("Server responded with error\n" + error);
@@ -392,4 +397,25 @@ function createTable() {
       window.location = "../pages/login.html";
     }
   });
+}
+
+//to search
+$(`#search-input`).on('keyup', function(){
+  var value = $(this).val()
+  search(value);
+})
+
+function search(value){
+  var filteredData = [];
+  makeAjaxCall("get", home_url, async=true).then((responseText) => {
+    let data = JSON.parse(responseText);
+    for(let i=0;i<data.length;i++){
+      value = value.toLowerCase();
+      let name = data[i].name.toLowerCase();
+      if(name.includes(value)){
+        filteredData.push(data[i]);
+      }
+    }
+    buildTable(filteredData);
+  })
 }
