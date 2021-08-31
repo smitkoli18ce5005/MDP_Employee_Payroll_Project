@@ -10,7 +10,9 @@
     display: flex;
     flex-direction: column;
 }
-
+.login-div > small{
+    text-align: left;
+}
 .login-div > h2 {
     padding-top: 2%;
     color: #576571;

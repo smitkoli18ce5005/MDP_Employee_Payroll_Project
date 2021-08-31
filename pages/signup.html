@@ -25,10 +25,19 @@
                 <div class="login-text" style="color: #65727c;">Please enter your login and password!</div>
                 <div class="elements-div">
                     <div class="labels">
-                        <label for="loginEmail">Username</label>
+                        <label for="email">Email</label>
                     </div>
                     <div class="inputs-div-name">
-                        <input type="text" class="input-name" id="username" placeholder="Enter username">
+                        <input type="email" class="input-name" id="email" placeholder="Enter Email">
+                        <small></small>
+                    </div>   
+                </div>
+                <div class="elements-div">
+                    <div class="labels">
+                        <label for="phone">Phone Number</label>
+                    </div>
+                    <div class="inputs-div-name">
+                        <input type="text" class="input-name" id="phone" placeholder="Enter phone number">
                         <small></small>
                     </div>   
                 </div>
@@ -37,7 +46,7 @@
                         <label for="loginPassword">Password</label>
                     </div>
                     <div class="inputs-div-name">
-                        <input type="text" class="input-name" id="password" placeholder="Enter password">
+                        <input type="password" class="input-name" id="password" placeholder="Enter password">
                         <small></small>
                     </div>   
                 </div>
@@ -46,15 +55,15 @@
                         <label for="loginPassword">Confirm Password</label>
                     </div>
                     <div class="inputs-div-name">
-                        <input type="text" class="input-name" id="password" placeholder="Enter same password">
+                        <input type="password" class="input-name" id="confirm-password" placeholder="Enter same password">
                         <small></small>
                     </div>   
                 </div>
                 <div class="login-text"><a href="../pages/login.html"></a></div>
-                <button class="login-button" onclick="location.href=`../pages/login.html`">Sign Up</button>
+                <button class="login-button" onclick="signUp()">Sign Up</button>
             </div>
         </div>
     </div>
-    <script src="../js/newparoll.js"></script>
+    <script src="../js/credentials.js"></script>
 </body>
 </html>

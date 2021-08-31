@@ -7,7 +7,6 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/payroll-form.css">
     <link rel="stylesheet" href="../css/home-page.css">
-    <!--<script src="../js/homePage.js"></script>-->
 </head>
 <body onload="createTable()">
     <div class="main-div">
@@ -20,6 +19,9 @@
                         <span class="payroll-text">PAYROLL</span>
                     </div>
                 </div>
+                <div class="user-div">
+                    <button class="log-out-button" onclick="logout()">Log Out</button>
+                </div>
             </div>
         </div>
         <div class="main-content">
@@ -28,7 +30,7 @@
                     <div class="table-count-div"><h2>Employee Details</h2><button class="table-count" id="table-count"></button></div>
                     <div class="button-pair">
                         <button class="search-button">&#x1F50D;</button>
-                        <button class="add-user-button" onclick="location.href=`../pages/payroll-form.html`" target="_blank">
+                        <button class="add-user-button" onclick="location.href=`../pages/payroll-form.html`">
                             <span style="font-size: large;">&#43;</span>&nbsp;Add User</button>
                     </div>   
                 </div>
@@ -37,5 +39,6 @@
         </div>
     </div>
     <script src="../js/newparoll.js"></script>
+    <script src="../js/credentials.js"></script>
 </body>
 </html>

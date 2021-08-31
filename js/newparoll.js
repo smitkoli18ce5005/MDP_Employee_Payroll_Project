@@ -133,9 +133,7 @@ function makeAjaxCall(methodType, url, async = false, data = null) {
     const xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function () {
-      console.log("ReadyState: " + xhttp.readyState);
       if (xhttp.readyState == 4) {
-        console.log("Started!");
         if (xhttp.status == 200) {
           resolve(xhttp.responseText);
         } else if (xhttp.status >= 400) {
@@ -293,17 +291,24 @@ function setValues(empObj) {
 }
 
 function checkForUpdates() {
-  if (localStorage.getItem("key") != undefined) {
-    let key = localStorage.getItem("key");
-    makeAjaxCall("get", home_url + key, (async = true))
-      .then((responseText) => {
-        console.log(JSON.parse(responseText));
-        setValues(JSON.parse(responseText));
-      })
-      .catch((error) => {
-        console.log("Server responded with error\n" + error);
-      });
-  }
+  let login_url = "http://localhost:3000/loginSuccess/0";
+  makeAjaxCall("get", login_url, (async = true)).then((result) => {
+    if(JSON.parse(result).pass){
+      if (localStorage.getItem("key") != undefined) {
+        let key = localStorage.getItem("key");
+        makeAjaxCall("get", home_url + key, (async = true))
+          .then((responseText) => {
+            console.log(JSON.parse(responseText));
+            setValues(JSON.parse(responseText));
+          })
+          .catch((error) => {
+            console.log("Server responded with error\n" + error);
+          });
+      }
+    } else {
+      window.location = "../pages/login.html";
+    }
+  });
 }
 
 function deleteUser(key) {
@@ -330,55 +335,61 @@ function department(deptlist) {
   }
   return deptmt;
 }
-
 function createTable() {
-  makeAjaxCall("get", home_url, (async = true))
-    .then((responseText) => {
-      let empObjList = JSON.parse(responseText);
-      document.getElementById("table-count").innerText = empObjList.length;
+  let login_url = "http://localhost:3000/loginSuccess/0";
+  makeAjaxCall("get", login_url, (async = true)).then((result) => {
+    if(JSON.parse(result).pass){
+        makeAjaxCall("get", home_url, (async = true))
+      .then((responseText) => {
+        let empObjList = JSON.parse(responseText);
+        document.getElementById("table-count").innerText = empObjList.length;
 
-      let table_header = `<thead><tr>
-                            <th></th>
-                            <th>NAME</th>
-                            <th>GENDER</th>
-                            <th>DEPARTMENT</th>
-                            <th>SALARY</th>
-                            <th>START DATE</th>
-                            <th>ACTIONS</th>
-                            </tr><thead><tbody>`;
+        let table_header = `<thead><tr>
+                              <th></th>
+                              <th>NAME</th>
+                              <th>GENDER</th>
+                              <th>DEPARTMENT</th>
+                              <th>SALARY</th>
+                              <th>START DATE</th>
+                              <th>ACTIONS</th>
+                              </tr><thead><tbody>`;
 
-      let table_content = `${table_header}`;
+        let table_content = `${table_header}`;
 
-      empObjList.forEach((empObj) => {
-        let dept = department(empObj.department);
-        table_content = `${table_content}
-            <tr>
-            <td><img src="${empObj.profileID}" alt="1"></td>
-            <td>${empObj.name}</td>
-            <td>${empObj.gender}</td>
-            <td>${dept}</td>
-            <td>&#x20B9; ${empObj.salary}</td>
-            <td>${
-              empObj.date[0] +
-              " " +
-              monthsInWords[empObj.date[1]] +
-              " " +
-              empObj.date[2]
-            }</td>
-            <td><div>
-                <button class="inside-button" id="${
-                  empObj.id
-                }" onclick="deleteUser(this.id)">&#128465;</button>
-                <button class="inside-button" id="${
-                  empObj.id
-                }" onclick="updateUser(this.id)">&#9998;</button>
-                </div>
-            </td>
-            </tr>`;
+        empObjList.forEach((empObj) => {
+          let dept = department(empObj.department);
+          table_content = `${table_content}
+              <tr>
+              <td><img src="${empObj.profileID}" alt="1"></td>
+              <td>${empObj.name}</td>
+              <td>${empObj.gender}</td>
+              <td>${dept}</td>
+              <td>&#x20B9; ${empObj.salary}</td>
+              <td>${
+                empObj.date[0] +
+                " " +
+                monthsInWords[empObj.date[1]] +
+                " " +
+                empObj.date[2]
+              }</td>
+              <td><div>
+                  <button class="inside-button" id="${
+                    empObj.id
+                  }" onclick="deleteUser(this.id)">&#128465;</button>
+                  <button class="inside-button" id="${
+                    empObj.id
+                  }" onclick="updateUser(this.id)">&#9998;</button>
+                  </div>
+              </td>
+              </tr>`;
+        });
+        document.getElementById("payroll-table").innerHTML = table_content;
+      })
+      .catch((error) => {
+        console.log("Server responded with error\n" + error);
       });
-      document.getElementById("payroll-table").innerHTML = table_content;
-    })
-    .catch((error) => {
-      console.log("Server responded with error\n" + error);
-    });
+    } else {
+      window.location = "../pages/login.html";
+    }
+  });
 }

@@ -1,37 +1,53 @@
 {
   "EmployeePayrollList": [
     {
-      "name": "Smit",
+      "name": "Smit Koli",
       "profileID": "../assets/Ellipse -2.png",
       "gender": "Male",
       "department": [
-        "Sales",
-        "Finance"
+        "Engineer"
       ],
-      "salary": "28685",
+      "salary": "33878",
       "date": [
-        "16",
+        "17",
         "8",
         "2021"
       ],
-      "notes": "adnkjsdsd",
-      "id": 1630129975085
+      "notes": "Sssss",
+      "id": 1630402562911
     },
     {
       "name": "Amit",
       "profileID": "../assets/Ellipse -3.png",
       "gender": "Male",
       "department": [
-        "Sales"
+        "HR",
+        "Sales",
+        "Engineer"
       ],
-      "salary": "34715",
+      "salary": "37617",
       "date": [
-        "9",
+        "16",
         "8",
         "2021"
       ],
-      "notes": "sdknkasdsad",
-      "id": 1630130513966
+      "notes": "ssss",
+      "id": 1630402589345
+    }
+  ],
+  "CredObjectList": [
+    {
+      "email": "smit@gmail.com",
+      "phone": "91-9999999999",
+      "password": "Smit@123",
+      "confirmPassword": "Smit@123",
+      "id": "91-9999999999"
+    }
+  ],
+  "loginSuccess": [
+    {
+      "pass": false,
+      "id": 0
     }
   ]
 }
