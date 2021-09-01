@@ -1,9 +1,15 @@
 let _email, _phone, _password, _confirmPassword;
-const LOG_IN = {
-    pass: true
+function LOG_IN(phone) {
+  return {
+    pass: true,
+    key: phone
+  };
 }
-const LOG_OUT = {
-    pass: false
+function LOG_OUT() {
+  return {
+    pass: false,
+    key: 0
+  };
 }
 
 class Credentials {
@@ -126,10 +132,10 @@ async function login() {
     await makeAjaxCall("get", cred_url + cred.phone, (async = true))
       .then((credObject) => {
         if (JSON.parse(credObject).password === cred.password) {
-          makeAjaxCall("put", login_url, (async = true), LOG_IN);
+          makeAjaxCall("put", login_url, (async = true), LOG_IN(cred.phone));
           window.location = "../pages/home-page.html";
         } else {
-            alert("Entered credentials are wrong! Sign up instead?");
+          alert("Entered credentials are wrong! Sign up instead?");
         }
       })
       .catch((error) => {
@@ -140,8 +146,8 @@ async function login() {
   }
 }
 
-async function logout(){
-  await makeAjaxCall("put", login_url, (async = true), LOG_OUT);
+async function logout() {
+  await makeAjaxCall("put", login_url, (async = true), LOG_OUT());
   window.location = "../pages/login.html";
 }
 
@@ -152,14 +158,16 @@ async function signUp() {
   cred.confirmPassword = document.getElementById("confirm-password");
   let credObject = createCredObject();
   if (credObject) {
-    await makeAjaxCall("get", cred_url, async=true).then((cred) => {
-      if(cred != undefined){
-        makeAjaxCall("post", cred_url, (async = true), credObject);
-      }
-      window.location = "../pages/login.html";
-    }).catch((error) => {
-      console.log(error);
-    });
+    await makeAjaxCall("get", cred_url, (async = true))
+      .then((cred) => {
+        if (cred != undefined) {
+          makeAjaxCall("post", cred_url, (async = true), credObject);
+        }
+        window.location = "../pages/login.html";
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }
 
@@ -186,7 +194,7 @@ function createCredObject() {
 
 function checkForLogin() {
   makeAjaxCall("get", login_url, (async = true)).then((result) => {
-    if(JSON.parse(result).pass){
+    if (JSON.parse(result).pass) {
       window.location = "../pages/home-page.html";
     }
   });

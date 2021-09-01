@@ -1,48 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../css/payroll-form.css">
-    <link rel="stylesheet" href="../css/home-page.css">
-</head>
-<body onload="createTable()">
-    <div class="main-div">
-        <div class="header-div">
-            <div class="header">
-                <div class="logo-div">
-                    <img src="../assets/logo.png" alt="">
-                    <div class="logo-text">
-                        <span class="emp-text">EMPLOYEE</span>
-                        <span class="payroll-text">PAYROLL</span>
-                    </div>
-                </div>
-                <div class="user-div">
-                    <button class="log-out-button" onclick="logout()">Log Out</button>
-                </div>
-            </div>
-        </div>
-        <div class="main-content">
-            <div class="home-content">
-                <div class="elements-button-div">
-                    <div class="table-count-div"><h2>Employee Details</h2><button class="table-count" id="table-count"></button></div>
-                    <div class="button-pair">
-                        <div class="search-div">
-                            <input class="search-text" type="text" id="search-input" placeholder="type here to search">
-                            <button class="search-button">&#x1F50D;</button>
-                        </div>
-                        <button class="add-user-button" onclick="location.href=`../pages/payroll-form.html`">
-                            <span style="font-size: large;">&#43;</span>&nbsp;Add User</button>
-                    </div>   
-                </div>
-                <table class="payroll-table" id="payroll-table"></table>    
-            </div>
-        </div>
+    <link rel="stylesheet" href="../css/payroll-form.css" />
+    <link rel="stylesheet" href="../css/home-page.css" />
+  </head>
+  <body onload="createTable()">
+    <div id="load">
+      <center><div id="preload"></div></center>
     </div>
+    <div class="main-div" id="content">
+      <div class="header-div">
+        <div class="header">
+          <div class="logo-div">
+            <img src="../assets/logo.png" alt="" />
+            <div class="logo-text">
+              <span class="emp-text">EMPLOYEE</span>
+              <span class="payroll-text">PAYROLL</span>
+            </div>
+          </div>
+          <div class="user-div">
+            <div class="dropdown">
+              <img
+                class="user-pic"
+                src="https://static.toiimg.com/thumb/resizemode-4,msid-76729750,imgsize-249247,width-720/76729750.jpg"
+                alt="user pics"
+              />
+              <div class="dropdown-content">
+                <a href="#" id="user-email"></a>
+                <a href="#" id="user-phone"></a>
+              </div>
+            </div>
+
+            <button class="log-out-button" onclick="logout()">Log Out</button>
+          </div>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="home-content">
+          <div class="elements-button-div">
+            <div class="table-count-div">
+              <h2>Employee Details</h2>
+              <button class="table-count" id="table-count"></button>
+            </div>
+            <div class="button-pair">
+              <div class="search-div">
+                <input
+                  class="search-text"
+                  type="text"
+                  id="search-input"
+                  placeholder="type here to search"
+                />
+                <button class="search-button">&#x1F50D;</button>
+              </div>
+              <button
+                class="add-user-button"
+                onclick="location.href=`../pages/payroll-form.html`"
+              >
+                <span style="font-size: large">&#43;</span>&nbsp;Add User
+              </button>
+            </div>
+          </div>
+          <table class="payroll-table" id="payroll-table"></table>
+        </div>
+      </div>
+    </div>
+    <script>
+      var loader = document.getElementById("load");
+      var content = document.getElementById("content");
+      setTimeout(function () {
+        loader.style.display = "none";
+        content.style.display = "block";
+      }, 3000);
+      //window.addEventListener("load", function () {});
+    </script>
     <script src="../js/newparoll.js"></script>
     <script src="../js/credentials.js"></script>
-</body>
+  </body>
 </html>

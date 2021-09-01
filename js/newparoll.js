@@ -36,7 +36,7 @@ class EmployeePayroll {
       _name = name.value;
     } else {
       const div = name.parentElement;
-      div.className = "inputs-div-name error";
+      div.className = "inputs-div-name-eror";
       const small = div.querySelector("small");
       small.innerText =
         "Name should start with captial and have at least 3 characters";
@@ -293,7 +293,7 @@ function setValues(empObj) {
 function checkForUpdates() {
   let login_url = "http://localhost:3000/loginSuccess/0";
   makeAjaxCall("get", login_url, (async = true)).then((result) => {
-    if(JSON.parse(result).pass){
+    if (JSON.parse(result).pass) {
       if (localStorage.getItem("key") != undefined) {
         let key = localStorage.getItem("key");
         makeAjaxCall("get", home_url + key, (async = true))
@@ -336,9 +336,7 @@ function department(deptlist) {
   return deptmt;
 }
 
-function buildTable(empObjList){
-  document.getElementById("table-count").innerText = empObjList.length;
-
+function buildTable(empObjList) {
   let table_header = `<thead><tr>
                         <th></th>
                         <th>NAME</th>
@@ -383,16 +381,29 @@ function buildTable(empObjList){
 
 function createTable() {
   let login_url = "http://localhost:3000/loginSuccess/0";
+  let cred_url = "http://localhost:3000/CredObjectList/";
+
   makeAjaxCall("get", login_url, (async = true)).then((result) => {
-    if(JSON.parse(result).pass){
-        makeAjaxCall("get", home_url, (async = true))
-      .then((responseText) => {
-        let empObjList = JSON.parse(responseText);
-        buildTable(empObjList);
-      })
-      .catch((error) => {
-        console.log("Server responded with error\n" + error);
-      });
+    if (JSON.parse(result).pass) {
+      makeAjaxCall("get", home_url, (async = true))
+        .then((responseText) => {
+          let empObjList = JSON.parse(responseText);
+          document.getElementById("table-count").innerText = empObjList.length;
+          buildTable(empObjList);
+          makeAjaxCall("get", login_url, (async = true)).then((data) => {
+            makeAjaxCall(
+              "get",
+              cred_url + JSON.parse(data).key,
+              (async = true)
+            ).then((credObject) => {
+              document.getElementById("user-email").innerHTML = "&#x1F4E7;&nbsp;&nbsp;:&nbsp;&nbsp;" +JSON.parse(credObject).email;
+              document.getElementById("user-phone").innerHTML = "&#x260E;&nbsp;&nbsp;:&nbsp;&nbsp;" +JSON.parse(credObject).phone;
+            });
+          });
+        })
+        .catch((error) => {
+          console.log("Server responded with error\n" + error);
+        });
     } else {
       window.location = "../pages/login.html";
     }
@@ -400,22 +411,22 @@ function createTable() {
 }
 
 //to search
-$(`#search-input`).on('keyup', function(){
-  var value = $(this).val()
+$(`#search-input`).on("keyup", function () {
+  var value = $(this).val();
   search(value);
-})
+});
 
-function search(value){
+function search(value) {
   var filteredData = [];
-  makeAjaxCall("get", home_url, async=true).then((responseText) => {
+  makeAjaxCall("get", home_url, (async = true)).then((responseText) => {
     let data = JSON.parse(responseText);
-    for(let i=0;i<data.length;i++){
+    for (let i = 0; i < data.length; i++) {
       value = value.toLowerCase();
       let name = data[i].name.toLowerCase();
-      if(name.includes(value)){
+      if (name.includes(value)) {
         filteredData.push(data[i]);
       }
     }
     buildTable(filteredData);
-  })
+  });
 }

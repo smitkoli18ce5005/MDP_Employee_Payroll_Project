@@ -73,19 +73,34 @@ body{
     margin-top: auto;
     margin-bottom: auto;
 }
-.inputs{
+.inputs, .inputs-notes{
     flex-basis: 70%;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
+.inputs{
+    height: 40px;
+}
 .inputs-div-name{
     flex-basis: 80%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items:flex-start;
 }
-.error > small{
+.inputs-div-name-eror{
+    flex-basis: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    padding-left: 0;
+    padding-right: 2%;
+}
+small{
+    display: block;
+    height: 20px;
+}
+.inputs-div-name-eror, .error > small{
    color: red;
 }
 .inputs > img,p,select{
@@ -95,7 +110,7 @@ body{
 .input-name{
     margin-left: 1%;
     width: 100%;
-    height: 100%;
+    height: 50%;
 }
 .input-notes{
     margin-left: 1%;

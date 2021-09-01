@@ -44,3 +44,4 @@ UC 19           - AJAX calls using json-server
 UC 20           - Ability to add, update and delete user using json-server
 UC 21           - Create Login and Registration Page
 UC 22           - Ability to search names in employee payroll table
+UC 23           - User login details in home page and preloader
