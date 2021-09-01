@@ -17,24 +17,6 @@
       "id": 1630402562911
     },
     {
-      "name": "Amit",
-      "profileID": "../assets/Ellipse -3.png",
-      "gender": "Male",
-      "department": [
-        "HR",
-        "Sales",
-        "Engineer"
-      ],
-      "salary": "37617",
-      "date": [
-        "16",
-        "8",
-        "2021"
-      ],
-      "notes": "ssss",
-      "id": 1630402589345
-    },
-    {
       "name": "Niraj",
       "profileID": "../assets/Ellipse -2.png",
       "gender": "Male",
@@ -59,11 +41,19 @@
       "password": "Smit@123",
       "confirmPassword": "Smit@123",
       "id": "91-9999999999"
+    },
+    {
+      "email": "amit@gmail.com",
+      "phone": "91-8888888888",
+      "password": "Amit@123",
+      "confirmPassword": "Amit@123",
+      "id": "91-8888888888"
     }
   ],
   "loginSuccess": [
     {
-      "pass": true,
+      "pass": false,
+      "key": 0,
       "id": 0
     }
   ]
